@@ -1,8 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
+// components
 import { AppComponent } from './app.component';
+
+// Modules
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
+
+// constants
+import { AppConstants } from './shared/contants';
+
+// interceptor
+import { HclInterceptor } from './shared/http-inteceptor';
+
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: HclInterceptor, multi: true },
+];
 
 @NgModule({
   declarations: [
@@ -10,9 +25,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [AppConstants, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
