@@ -18,7 +18,8 @@ export class ContactService {
   }
 
   /**
- * This method is used to retrive the contact information from API
+ * This method is used to retrive the contact information from API based on employee Id.
+ * @param employeeId - id of the employee
  * @returns the contact details based on employeeId
  */
   public getContact(employeeId: number): Observable<IContact> {

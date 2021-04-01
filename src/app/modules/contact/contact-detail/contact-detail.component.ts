@@ -6,7 +6,7 @@ import { ContactService } from '../service/contact.service';
 @Component({
   selector: 'app-contact-detail',
   templateUrl: './contact-detail.component.html',
-  styleUrls: ['./contact-detail.component.scss']
+  styleUrls: ['./contact-detail.component.scss'],
 })
 export class ContactDetailComponent implements OnInit {
 
@@ -21,6 +21,10 @@ export class ContactDetailComponent implements OnInit {
     this.loadContactDetails(this.contactId);
   }
 
+  /**
+   * This method is used to get the contact information based on employee id.
+   * @param employeeId - id of the eomplyee.
+   */
   public loadContactDetails(employeeId: number): void {
     this.contactService.getContact(employeeId).subscribe((contact: IContact) => {
       this.contact = contact;
