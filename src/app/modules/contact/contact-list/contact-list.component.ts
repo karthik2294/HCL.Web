@@ -12,6 +12,7 @@ import { ContactService } from '../service/contact.service';
 export class ContactListComponent implements OnInit {
 
   public contacts: IContact[];
+  public nameFilter: string;
 
   constructor(private contactService: ContactService) { }
 
