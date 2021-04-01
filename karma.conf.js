@@ -27,6 +27,7 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
+    exclude: ["/**/*mock*.ts"],
     restartOnFileChange: true
   });
 };

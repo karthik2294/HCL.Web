@@ -1,23 +1,39 @@
-<div class="card mb-3">
-    <div class=" card-header">Contact List</div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email Address</th>
-                        <th scope="col">Phone Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let contact of contacts">
-                        <td>{{contact.name}}</td>
-                        <td>{{contact.email}}</td>
-                        <td>{{contact.phone}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<app-panel panelHeading="Contact List">
+    <div class="filter">
+        <form>
+            <div class="form-group row">
+                <label for="filterBy" class="col-sm-2 col-form-label">Filter By:</label>
+                <div class="col-sm-10">
+                    <input type="text" id="filterBy" [(ngModel)]="nameFilter" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label font-weight-bold">Filter By:</label>
+                <div class="col-sm-10">
+                    <label for="filterBy" class="col-sm-2 col-form-label">{{nameFilter}}</label>
+
+                </div>
+            </div>
+        </form>
+
     </div>
-</div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contact of contacts | contactFilter:nameFilter">
+                    <td><a routerLink="/contact-detail/{{contact.employeeId}}"
+                            routerLinkActive="active">{{contact.name}}</a></td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</app-panel>
